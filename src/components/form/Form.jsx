@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Look from "./look";
 import axios from "axios";
 import { listfilters } from "../../redux/actions/actions";
-
+import { Link } from "react-router-dom";
 function Form() {
   const dispatch = useDispatch();
   const dietas = useSelector((state) => state.diets);
@@ -151,106 +151,107 @@ function Form() {
     <div className="form_father">
       <div className="form_top_wallpeper"></div>
 
-      <form onSubmit={handleform}>
-        {/* form part 1 */}
-        <div className="form_data">
-          <h1>Create your own recipe</h1>
-          <div className="form_element">
-            <h3>Recipe name:</h3>
-            <input
-              type="text"
-              value={contenido.name}
-              name="name"
-              onChange={handledata}
-            />
-          </div>
-          <div className="form_element">
-            <h3>Recipe image</h3>
-            <input
-              type="text"
-              value={contenido.image}
-              name="image"
-              onChange={handledata}
-            />
-          </div>
+      {/* form part 1 */}
+      <div className="form_data">
+        <h1>Create your own recipe</h1>
+        <div className="form_element">
+          <h3>Recipe name:</h3>
+          <input
+            type="text"
+            value={contenido.name}
+            name="name"
+            onChange={handledata}
+          />
+        </div>
+        <div className="form_element">
+          <h3>Recipe image</h3>
+          <input
+            type="text"
+            value={contenido.image}
+            name="image"
+            onChange={handledata}
+          />
+        </div>
 
-          <div className="form_element">
-            <h3>Head score:</h3>
-            <input
-              type="number"
-              value={contenido.level}
-              name="level"
-              onChange={handledata}
-            />
-          </div>
+        <div className="form_element">
+          <h3>Head score:</h3>
+          <input
+            type="number"
+            value={contenido.level}
+            name="level"
+            onChange={handledata}
+          />
         </div>
-        {/* form part 2 */}
-        <div className="form_data">
-          <div className="form_text_long">
-            <h3>Summary:</h3>
-            <textarea
-              className="form_textarea"
-              value={contenido.resumen}
-              rows="3"
-              cols="80"
-              name="resumen"
-              onChange={handledata}
-            ></textarea>
-          </div>
+      </div>
+      {/* form part 2 */}
+      <div className="form_data">
+        <div className="form_text_long">
+          <h3>Summary:</h3>
+          <textarea
+            className="form_textarea"
+            value={contenido.resumen}
+            rows="3"
+            cols="80"
+            name="resumen"
+            onChange={handledata}
+          ></textarea>
         </div>
-        {/* form part 3 */}
-        <div className="form_data">
-          <div className="form_add_recipe">
-            <div className="form_2_element">
-              <h5>Tipe recipe</h5>
-              {diets ? (
-                <select onChange={handleselect} className="form_selector">
-                  {diets.map((data) => {
-                    return <option value={data}>{data}</option>;
-                  })}
-                </select>
-              ) : (
-                <div>nada</div>
-              )}
-              <button onClick={savediet}>Add</button>
-              <div className="form_steps">
-                <h5>Steps</h5>
-                <textarea
-                  name="paso"
-                  value={contenido.paso}
-                  rows="5"
-                  cols="50"
-                  onChange={handledata}
-                  className="form_text_2"
-                ></textarea>
-                <button onClick={() => savestep}>add Step</button>
-              </div>
+      </div>
+      {/* form part 3 */}
+      <div className="form_data">
+        <div className="form_add_recipe">
+          <div className="form_2_element">
+            <h5>Tipe recipe</h5>
+            {diets ? (
+              <select onChange={handleselect} className="form_selector">
+                {diets.map((data) => {
+                  return <option value={data}>{data}</option>;
+                })}
+              </select>
+            ) : (
+              <div>nada</div>
+            )}
+            <button onClick={savediet}>Add</button>
+            <div className="form_steps">
+              <h5>Steps</h5>
+              <textarea
+                name="paso"
+                value={contenido.paso}
+                rows="5"
+                cols="50"
+                onChange={handledata}
+                className="form_text_2"
+              ></textarea>
+              <button onClick={savestep}>add Step</button>
             </div>
-
-            <Look
-              contenido={contenido}
-              deletediet={deletediet}
-              deletestep={deletestep}
-            />
           </div>
 
-          <button type="submit" className="finish_form">
-            Save
-          </button>
-          {contenido.chek === true ? (
-            <div className="form_error">
-              <h2>Erros:</h2>
-              {errors.name ? <h3>{errors.name}</h3> : ""}
-              {errors.image ? <h3>{errors.image}</h3> : ""}
-              {errors.level ? <h3>{errors.level}</h3> : ""}
-              {errors.pasos ? <h3>{errors.pasos}</h3> : ""}
-              {errors.diet ? <h3>{errors.diet}</h3> : ""}
-            </div>
-          ) : (
-            <div></div>
-          )}
+          <Look
+            contenido={contenido}
+            deletediet={deletediet}
+            deletestep={deletestep}
+          />
         </div>
-      </form>
+
+        <button className="finish_form" onClick={handleform}>
+          Save
+        </button>
+        <Link to={`/home`} className="link">
+          <div className="finisch">reguresar</div>
+        </Link>
+        {contenido.chek === true ? (
+          <div className="form_error">
+            <h2>Erros:</h2>
+            {errors.name ? <h3>{errors.name}</h3> : ""}
+            {errors.image ? <h3>{errors.image}</h3> : ""}
+            {errors.level ? <h3>{errors.level}</h3> : ""}
+            {errors.pasos ? <h3>{errors.pasos}</h3> : ""}
+            {errors.diet ? <h3>{errors.diet}</h3> : ""}
+          </div>
+        ) : (
+          <div></div>
+        )}
+      </div>
     </div>
   );
 }
