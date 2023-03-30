@@ -223,7 +223,7 @@ function Form() {
                   onChange={handledata}
                   className="form_text_2"
                 ></textarea>
-                <button onClick={savestep}>Add Step</button>
+                <button onClick={() => savestep}>add Step</button>
               </div>
             </div>
 
