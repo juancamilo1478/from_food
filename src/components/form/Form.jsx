@@ -47,8 +47,6 @@ function Form() {
     console.log(errors);
   };
   const handleform = (e) => {
-    e.preventDefault();
-
     if (
       !errors.name &&
       !errors.image &&
