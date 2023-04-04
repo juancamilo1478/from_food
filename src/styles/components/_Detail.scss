@@ -34,6 +34,23 @@ h2{
 
 }
 
+
+@media screen and (max-width: 800px) {
+    .detail_2div {
+      
+        flex-wrap: wrap;
+        div{
+            width: 80%;
+            margin: auto;
+            font-size: 1rem;
+        }
+        img{
+            margin-bottom: 50px;
+        }
+    }
+}
+
+
 }
 .detail_fondo{
     position: fixed;
@@ -134,3 +151,4 @@ background: rgb(13, 18, 91);
     }
     text-align: center;
  }
+

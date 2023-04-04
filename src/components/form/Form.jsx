@@ -75,6 +75,7 @@ function Form() {
         [e.target.name]: e.target.value,
       })
     );
+    console.log(contenido);
   };
   const handleform = (e) => {
     if (

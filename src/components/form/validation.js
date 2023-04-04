@@ -1,4 +1,4 @@
-const regImage = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
+
 const regTitle = /^\S.{0,30}\S$/;
 
 
@@ -10,8 +10,8 @@ const validation = (contenido)=>{
         errors.name= 'empty title or long'; 
     }
   
-    if (!regImage.test(contenido.image)) {
-        errors.image= 'not an image link';
+    if (!contenido.image.includes("https://res.cloudinary.com/dirsusbyy/image/upload")) {
+        errors.image= 'not image';
     }
     if (isNaN(contenido.level)) {
         errors.level= 'not is a number';
