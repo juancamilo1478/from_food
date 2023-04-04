@@ -10,18 +10,8 @@ const Detail = () => {
 
   useEffect(() => {
     const real = id.toString();
-    console.log(real);
     dispatch(detaildata(real));
   }, [dispatch, id]);
-
-  const estilos = {
-    position: "relative",
-    width: detail.level + "%",
-    height: "100%",
-    padding: "8px",
-    overflow: "hidden",
-    display: "flex",
-  };
 
   return (
     <div className="detail_detail">
@@ -42,15 +32,13 @@ const Detail = () => {
             </div>
 
             <div className="detail_barra_100">
-              <div style={estilos}>
-                <div className="detail_barra" />
-              </div>
+              <progress max="100" value={detail.level} />
             </div>
           </div>
 
           <div className="detail_paso_top">
             <h2>Preparation</h2>
-            {detail.pasos.map((data) => {
+            {detail.pasos[0].steps.map((data) => {
               return (
                 <div className="detail_paso">
                   {data.number}
@@ -58,6 +46,17 @@ const Detail = () => {
                 </div>
               );
             })}
+            <div className="detail_diets">
+              <h2>
+                Type of diet <i class="fa-solid fa-bowl-food"></i>
+              </h2>
+              {detail.diets
+                ? detail.diets.map((data, index) => {
+                    return <h3>* {data}</h3>;
+                  })
+                : ""}
+            </div>
+
             <Link to={"/home"} className="link">
               <div className="detail_return">
                 <h4>Return</h4>

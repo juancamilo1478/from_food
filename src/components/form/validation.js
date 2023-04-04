@@ -27,7 +27,10 @@ const validation = (contenido)=>{
     if(contenido.pasos.length===0){
         errors.pasos="not step"
     }
-    
+    if(contenido.resumen.length<10)
+    {
+        errors.resumen="sumary small or null"
+    }
 
     return errors;
 }

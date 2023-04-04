@@ -12,7 +12,7 @@ import store from './redux/store/store'
 
 //axios
 // axios.defaults.baseURL='http://localhost:3001/';
-axios.defaults.baseURL='https://backfood-production-5cfb.up.railway.app';
+ axios.defaults.baseURL='https://backfood-production-5cfb.up.railway.app';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

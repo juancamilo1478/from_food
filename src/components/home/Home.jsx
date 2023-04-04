@@ -7,11 +7,12 @@ import Search from "../search/Search";
 
 const Home = () => {
   const dispatch = useDispatch();
+
   // const cartas = useSelector((state) => state.cards);
 
   useEffect(() => {
-    dispatch(getcards());
     dispatch(listfilters());
+    dispatch(getcards());
   }, [dispatch]);
 
   return (
@@ -23,7 +24,6 @@ const Home = () => {
         <div className="home_filter">
           <Filter />
         </div>
-
         <div className="home_cartas">
           <Cards />
         </div>

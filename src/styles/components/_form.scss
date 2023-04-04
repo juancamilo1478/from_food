@@ -10,17 +10,9 @@ position: fixed;
 }
 .form_father{
     position: absolute;
-    width: 100%;
-    
+    width: 100%; 
 }
-
-
-
-
-
-
 .form_data{
- 
     position: relative;
     z-index: 2;
     width: 80%;
@@ -28,74 +20,66 @@ position: fixed;
     margin-top: 15px;
     padding: 20px;
     border-radius: 10px;
-    background: rgba(238, 235, 240, 0.438);
+
     h1{
         font-family: 'Love Light', cursive;
         font-size: 3vw;
         text-align: center;
-        margin-bottom: 50px;
+        margin-bottom: 10px;
     }
 }
-
 .form_element{
-    width: 80%;
+    width: 100%;
     margin: auto;
     display: flex;
     gap: 50px;
     margin-bottom: 10px;
+    
     h3{
-        width: 20%;
+        width: 30%;
+        font-size: 1rem;
     }
     input{
         border: none;
         outline: none;
-        width: 40%;
+        width: 100%;
         border-radius: 10px;
         text-align: center;
     }
-}
-.form_text_long{
+    .form_look_sumary {
         width: 100%;
-        margin: auto;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 50px;
-        
-        margin-bottom: 10px;
-        justify-content: center;
+        resize: none;
+        height: 40px;
+        word-wrap: break-word;
+        border-radius: 5px;
+    }
+    .button_diets_save{
+        background: transparent;
+        height: max-content;
+        color: rgb(248, 80, 13);
+        border-radius: 10px;
+       font-size: 1.5rem;
+        border: transparent;
+        transition: 0.5s;
+    }
+        .button_diets_save:hover{
+            cursor: pointer;
           
-        
-        
-            // align-items: center;
-        h3 {
-            margin-top: 50px;
-            width: 80%;
-            font-family: 'Love Light', cursive;
-            font-size: 3vw;
-            text-align: center;
-            
+            color: rgb(252, 42, 5);
         }
-    
-        input {
-            border: none;
-            outline: none;
-            width: 80%;
-            height: 100px;
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
 }
-
-
 .form_add_recipe{
-  
     width: 100%;
     display: flex;
-    gap: 5%;
+    gap: 3%;
+   
     .form_2_element{
-        width: 45%;
+        width: 50%;
+        background: rgba(0, 0, 0, 0.603);
+        border-radius: 10px;
+        color: white;
+       
+
        
             h5 {
                     font-family: 'Love Light', cursive;
@@ -103,131 +87,48 @@ position: fixed;
                     text-align: center;
                     margin-bottom: 20px;
                 }
-    button{
-        border-radius: 50%;
-        padding: 10px;
-        background: rgb(17, 123, 131);
-        color: white;
-        margin-bottom: 20px;
-    }
+
     }
   
 }
-
-
-
-.form_look_recipe{
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+.form_view_pre{
+    width: 50%;
+    height: 80vh;
+  
 }
-.look_all{
-    width: calc(50vw);
-    background: rgba(0, 0, 0, 0.37);
-    border-radius: 10px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.form_look_botton{
-    background: black; 
-    height: 20px; 
-    color: white; 
-    padding: 5px;
-    border-radius: 10px;
-    button{
-        margin-left: 20px;
-        color: red;
-        border-radius: 50%;
-        padding: 2px;
-       
-    }
-}
-.form_pasos{
-    width: 100%;
-    display: flex;
-    gap: 40px;
-}
-
-.form_pasos_look{
-    width: 100%;
-    background: red;
-}
-.form_textarea{
-    resize: none;
-    border-radius: 10px;
-    color: white;
-    background: rgba(0, 0, 0, 0.322);
-}
-
-
-.form_steps{
-    width: 100%;
-
-    h5{
-        font-family: 'Love Light', cursive;
-        font-size: 2vw;
-        text-align: center;
-            margin-bottom: 20px;
-    }
-    textarea{
-        resize: none;
-        width: 100%;
-    }
-}
-
-
-.look_step{
-    width: 100%;
-    
-    display: flex;
-    background: rgba(0, 0, 0, 0.534);
-    gap: 20px;
-    padding: 3px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    button{
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-    }
-   div{
-    color: white;
-        overflow: auto;
-        word-wrap: break-word;
-        width: calc(40vw);
-        height: 100%;
-        box-shadow: 5px 5px 5px black;
-        
-   }
-
-}
-
-
 .form_selector{
+    width: 70%;
+    height: max-content;
     border-radius: 10px;
-    margin-right: 10px;
     background: rgba(31, 31, 30, 0.568);
     color: white;
     text-align: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
-.form_text_2{
-    background: rgba(0, 0, 0, 0.445);
-    border-radius: 10px;
-    color: white;
+
 }
 .finish_form{
+    width: 90%;
+    display: flex;
+    margin: auto;
+    margin-top: 50px;
     border-radius: 10px;
     padding: 10px;
-    background: red;
+background: rgb(135, 2, 236);
+    background: linear-gradient(93deg, rgba(135, 2, 236, 1) 0%, rgba(237, 12, 62, 1) 100%);
+    border: transparent;
     color: white;
+    font-weight: bolder;
+    justify-content: center;
+    box-shadow: 5px 5px 5px black;
+
+}
+.finish_form:hover {
+    cursor: pointer;
 }
 .form_error{
     margin: auto;
+    margin-top: 30px;
     width: 80%;
+    color: white;
     background: rgba(255, 0, 0, 0.384);
     border-radius: 10px;
     h3{
@@ -236,8 +137,6 @@ position: fixed;
         
     }
 }
-
-
 .finisch{
     background: rebeccapurple;
     width:max-content;
@@ -245,4 +144,27 @@ position: fixed;
     padding: 5px;
     border-radius: 10px;
     color: white;
+}
+.form_return{
+    position: fixed;
+    top: 0;
+    left: 50px;
+    z-index: 2;
+}
+//responsive
+@media screen and (max-width: 800px) {
+.form_data{
+    width: 90%;
+}
+.form_add_recipe{
+    flex-wrap: wrap;
+    .form_2_element{
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+}
+.form_view_pre{
+    width: 100%;
+}
 }

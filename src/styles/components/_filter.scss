@@ -133,3 +133,39 @@ margin: auto;
         margin: auto;
     }
 }
+
+.button_filter_state{
+    width: 100%;
+    background: rgb(241, 169, 11);
+    text-align: center;
+    padding: 2px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    color: white;
+    display: none;
+}
+
+.filter_on{
+    transition: 1s;
+    display: block;
+    height: 80vh;
+}
+.filter_off{
+    transition: 1s;
+    display: none;
+}
+
+
+@media screen and (max-width: 800px) {
+    
+     
+   
+   .button_filter_state{
+    display: block;
+   }
+
+
+
+
+}
+

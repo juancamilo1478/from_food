@@ -1,13 +1,13 @@
 .search_all{
-    width: 90%;
+    width: 86%;
     justify-content: center;
     align-items: center;
     padding: 50px;
     background: rgba(255, 255, 255, 0.26);
     margin: auto;
     margin-bottom: 50px;
- 
     border-radius: 10px;
+
 }
 
 .search_search{
@@ -19,6 +19,7 @@
     margin: auto;
     display: flex;
     gap: 10px;
+    margin-top: 20px;
     input{
         appearance: none;
             border: none;

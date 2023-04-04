@@ -1,30 +1,24 @@
-
-@mixin slidercontroller($position: 0%){
-    width: 500% ;
-    height:  500px ;
-    display: flex;
-    margin-left: $position;
-    transition: 3s;
-}
-
-
 .indice_div1{
     position: relative;
-    width: 80%;
-    margin: 100px auto;
-    background:rgba(255, 255, 255, 0.267);
+    width: 90%;
+    margin: auto;
+    background:rgba(17, 17, 17, 0.425);
     padding: 10px;
-    display: flex;
     gap:80px;
-    border-radius: 10px;    
+    border-radius: 10px;   
+    margin-bottom: 50px; 
+    margin-top: 50px;
 }
 .indice_div_slider{
-    width: 60%;
-    margin: auto;
+    width: 100%; 
+    position: relative;
+    
 }
+
+
 .indice_div_parrafo{
     margin: 40px;
-    width: 35%;
+    width: 80%;
     font-weight: 100;
     color: white;
     text-shadow: 2px 2px 2px black;
@@ -39,34 +33,8 @@
 
 
 
-.indice_allSlider{
-    margin: 0;
-    padding: 0;
-    width: 500px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 2s; 
-}
-.indice_slider{
-    transition: 3s;
-    @include slidercontroller($position:-0%)
-  
-}
-.indice_slider2{
-    transition: 3s;
-    @include slidercontroller($position: -100%)
-}
 
-.indice_slider3{
-        transition: 3s;
-        @include slidercontroller($position: -200%)
-}
-.indice_slider4{
-    transition: 3s;
-    @include slidercontroller($position: -300%)
-}
+
 
 .indice_fondo{
  
@@ -77,63 +45,101 @@
     z-index: -1;
 }
 .indice_top{
-    
     position: absolute;
+  
 }
 
-
-.indice_slide{
-            width: 500px;
-            height: 300px;
-           
-}
-.image_slide{
-width: 500px;
-height: 300px;
-}
-
-.slide_total{
-    position: relative;
-    width: 500px;
-    height: 300px;
-    border-radius: 10px;
-    overflow: hidden;
-    display: flex;
-    margin: auto;
-        
-    
-
-}
-
-
-.indice_image{
+.fondo_indice{
+background-image: url("../../images/f3.jpg");
+    font-size: 100% 100%;
+    position: fixed;
+    background-attachment: fixed;
+        background-size: cover;
     width: 100%;
     height: 100%;
+    
 }
+
+
+
+
 .indice_botton{
-    text-shadow: 0px 0px 0px black;
+    background: rgb(135, 2, 236);
+        background: linear-gradient(93deg, rgba(135, 2, 236, 1) 0%, rgba(237, 12, 62, 1) 100%);
     color: white;
-    width: 100px;
-    padding: 5px;
-    background: blue;
+    width: max-content;
+    padding: 10px;
     text-align: center;
     border-radius: 10px;
     box-shadow: 5px 5px 5px black;
     transition: 2s;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 30px;
+
     
 }
 .link{
     text-decoration: none;
 }
 .indice_botton:hover{
-    background: rgb(212, 55, 55);
+background: rgb(101, 100, 99);
+    background: linear-gradient(159deg, rgba(101, 100, 99, 1) 0%, rgba(119, 244, 34, 1) 100%);
 
 }
 
 
-.indice_chef{
-    position: absolute;
-    width: 350px;
-    bottom: 0;
-    right: 0;
+
+.slide_image_relative {
+position: relative;
+    border-radius: 10px;
+
+    .slide_image {
+        display: flex;
+            width: 80%;
+            margin: auto;
+            position: relative;
+         
+    
+            img{
+    border-radius: 20px;
+            }
+            .slide_off {
+                transition: 2s;
+                opacity: 1;
+                width: 100%;
+                height: 500px;
+            }
+    
+            .slide_on {
+                opacity: 0;
+                width: 100%;
+                height: 500px;
+            }
+    
+            button {
+                display: none;
+            }
+
+                        
+
+        }
+
+
+}
+
+
+@media screen and (max-width: 800px) {
+.slide_image_relative{
+.slide_image{
+.slide_off {
+        height: 250px;
+    }
+
+    .slide_on {
+        height: 250px;
+    }
+}
+   
+}
 }

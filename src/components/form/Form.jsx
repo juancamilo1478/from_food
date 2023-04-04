@@ -1,13 +1,44 @@
 import { useEffect, useState } from "react";
 import validation from "./validation";
 import { useDispatch, useSelector } from "react-redux";
-import Look from "./look";
-import axios from "axios";
+import DetailLook from "./DetailLook";
 import { listfilters } from "../../redux/actions/actions";
 import { Link } from "react-router-dom";
+import axios from "axios";
 function Form() {
   const dispatch = useDispatch();
   const dietas = useSelector((state) => state.diets);
+
+  const [imageurl, setimageurl] = useState(
+    "https://res.cloudinary.com/dirsusbyy/image/upload/v1680389194/ppex43qn0ykjyejn1amk.png"
+  );
+  const update = async (dato) => {
+    const data = new FormData();
+    data.append("file", dato);
+    data.append("upload_preset", "u61bg6yv");
+    data.append("cloud_name", "dirsusbyy");
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/dirsusbyy/image/upload",
+        data
+      );
+      setimageurl(response.data.secure_url);
+      setcontenido({
+        ...contenido,
+        image: response.data.secure_url,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleimage = async (e) => {
+    const selectedFile = await e.target.files[0];
+    if (selectedFile) {
+      update(selectedFile);
+    }
+  };
+
   useEffect(() => {
     if (dietas.length === 0) {
       dispatch(listfilters());
@@ -22,7 +53,7 @@ function Form() {
     level: 0,
     pasos: [],
     diet: [],
-    select_diet: "",
+    select_diet: "gluten free",
     paso: "",
     chek: false,
   });
@@ -44,7 +75,6 @@ function Form() {
         [e.target.name]: e.target.value,
       })
     );
-    console.log(errors);
   };
   const handleform = (e) => {
     if (
@@ -92,7 +122,6 @@ function Form() {
   };
 
   const savediet = () => {
-    console.log(contenido.diet.includes(contenido.select_diet) === false);
     if (
       contenido.select_diet !== "" &&
       contenido.diet.includes(contenido.select_diet) === false
@@ -101,7 +130,6 @@ function Form() {
         ...contenido,
         diet: [...contenido.diet, contenido.select_diet],
       });
-      console.log(contenido);
     }
   };
 
@@ -119,7 +147,7 @@ function Form() {
     let filtered = contenido.pasos.filter((data) => {
       return parseInt(e.target.value) !== parseInt(data.number);
     });
-    console.log(filtered);
+
     filtered = filtered.map((data, index) => {
       return {
         ...data,
@@ -142,114 +170,114 @@ function Form() {
         paso: "",
         pasos: [...contenido.pasos, data],
       });
-      console.log(contenido);
     }
   };
+
   return (
     <div className="form_father">
       <div className="form_top_wallpeper"></div>
-
-      {/* form part 1 */}
-      <div className="form_data">
-        <h1>Create your own recipe</h1>
-        <div className="form_element">
-          <h3>Recipe name:</h3>
-          <input
-            type="text"
-            value={contenido.name}
-            name="name"
-            onChange={handledata}
-          />
-        </div>
-        <div className="form_element">
-          <h3>Recipe image</h3>
-          <input
-            type="text"
-            value={contenido.image}
-            name="image"
-            onChange={handledata}
-          />
-        </div>
-
-        <div className="form_element">
-          <h3>Head score:</h3>
-          <input
-            type="number"
-            value={contenido.level}
-            name="level"
-            onChange={handledata}
-          />
-        </div>
-      </div>
-      {/* form part 2 */}
-      <div className="form_data">
-        <div className="form_text_long">
-          <h3>Summary:</h3>
-          <textarea
-            className="form_textarea"
-            value={contenido.resumen}
-            rows="3"
-            cols="80"
-            name="resumen"
-            onChange={handledata}
-          ></textarea>
-        </div>
-      </div>
-      {/* form part 3 */}
       <div className="form_data">
         <div className="form_add_recipe">
           <div className="form_2_element">
-            <h5>Tipe recipe</h5>
-            {diets ? (
-              <select onChange={handleselect} className="form_selector">
-                {diets.map((data) => {
-                  return <option value={data}>{data}</option>;
-                })}
-              </select>
-            ) : (
-              <div>nada</div>
-            )}
-            <button onClick={savediet}>Add</button>
-            <div className="form_steps">
-              <h5>Steps</h5>
-              <textarea
-                name="paso"
-                value={contenido.paso}
-                rows="5"
-                cols="50"
-                onChange={handledata}
-                className="form_text_2"
-              ></textarea>
-              <button onClick={savestep}>add Step</button>
+            <div className="form_data">
+              <h1>Create your own recipe</h1>
+              <div className="form_element">
+                <h3>Recipe name:</h3>
+                <input
+                  type="text"
+                  value={contenido.name}
+                  name="name"
+                  onChange={handledata}
+                />
+              </div>
+
+              <div className="form_element">
+                <h3>Head score:</h3>
+                <input
+                  type="number"
+                  value={contenido.level}
+                  name="level"
+                  onChange={handledata}
+                />
+              </div>
+              <div className="form_element">
+                <h3>Summary:</h3>
+                <textarea
+                  className="form_look_sumary"
+                  onChange={handledata}
+                  value={contenido.resumen}
+                  name="resumen"
+                />
+              </div>
+              <div className="form_element">
+                <h3>Diets:</h3>
+                {diets ? (
+                  <select onChange={handleselect} className="form_selector">
+                    {diets.map((data) => {
+                      return <option value={data}>{data}</option>;
+                    })}
+                  </select>
+                ) : (
+                  <div>nada</div>
+                )}
+
+                <button onClick={savediet} className="button_diets_save">
+                  <i class="fa-solid fa-circle-plus"></i>
+                </button>
+              </div>
+              <div className="form_element">
+                <h3>Steps</h3>
+                <textarea
+                  name="paso"
+                  value={contenido.paso}
+                  onChange={handledata}
+                  className="form_look_sumary"
+                />
+                <button onClick={savestep} className="button_diets_save">
+                  <i class="fa-solid fa-circle-plus"></i>
+                </button>
+              </div>
+
+              <div className="form_element">
+                <h3 className="form_element_ico">Up image</h3>
+
+                <input type="file" onChange={handleimage} />
+              </div>
+
+              <button className="finish_form" onClick={handleform}>
+                Save
+              </button>
             </div>
           </div>
-
-          <Look
-            contenido={contenido}
-            deletediet={deletediet}
-            deletestep={deletestep}
-          />
+          <div className="form_view_pre">
+            <DetailLook
+              contenido={contenido}
+              imageurl={imageurl}
+              deletestep={deletestep}
+              deletediet={deletediet}
+            />
+          </div>
         </div>
 
-        <button className="finish_form" onClick={handleform}>
-          Save
-        </button>
-        <Link to={`/home`} className="link">
-          <div className="finisch">reguresar</div>
-        </Link>
         {contenido.chek === true ? (
           <div className="form_error">
             <h2>Erros:</h2>
-            {errors.name ? <h3>{errors.name}</h3> : ""}
-            {errors.image ? <h3>{errors.image}</h3> : ""}
-            {errors.level ? <h3>{errors.level}</h3> : ""}
-            {errors.pasos ? <h3>{errors.pasos}</h3> : ""}
-            {errors.diet ? <h3>{errors.diet}</h3> : ""}
+            {errors.name ? <h3>* {errors.name}</h3> : ""}
+            {errors.image ? <h3>* {errors.image}</h3> : ""}
+            {errors.level ? <h3>* {errors.level}</h3> : ""}
+            {errors.pasos ? <h3>* {errors.pasos}</h3> : ""}
+            {errors.diet ? <h3>* {errors.diet}</h3> : ""}
+            {errors.resumen ? <h3>* {errors.resumen}</h3> : ""}
           </div>
         ) : (
           <div></div>
         )}
       </div>
+      <Link to={`/home`} className="link  form_return">
+        <div className="finisch">
+          Back <i class="fa-solid fa-house"></i>
+        </div>
+      </Link>
     </div>
   );
 }

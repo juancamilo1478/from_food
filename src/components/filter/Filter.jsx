@@ -60,9 +60,7 @@ function Filter() {
     }
   };
 
-  useEffect(() => {
-    console.log(diets);
-  }, [diets]);
+  useEffect(() => {}, [diets]);
 
   //reset
   const [resetboton, setreset] = useState(0);
@@ -73,48 +71,61 @@ function Filter() {
     dispatch(reset());
   };
 
+  const [buttonfilter, setbuttonfilter] = useState(true);
+  const handlebutton = () => {
+    if (buttonfilter === false) {
+      return setbuttonfilter(true);
+    } else setbuttonfilter(false);
+  };
+
   return (
     <div className="filter_all">
-      <h3>Order by</h3>
-      <hr />
-      <div className="filter_botton_order">
-        <div
-          onClick={() => order("A-Z")}
-          className={estado.order === "A-Z" ? "filter_ok" : "filter_no"}
-        >
-          <h4>A-Z</h4>
-        </div>
-        <div
-          onClick={() => order("Z-A")}
-          className={estado.order === "Z-A" ? "filter_ok" : "filter_no"}
-        >
-          <h4>Z-A</h4>
-        </div>
-        <div
-          onClick={() => order("HS-min")}
-          className={estado.order === "HS-min" ? "filter_ok" : "filter_no"}
-        >
-          <h4>HS-min</h4>
-        </div>
-        <div
-          onClick={() => order("HS-max")}
-          className={estado.order === "HS-max" ? "filter_ok" : "filter_no"}
-        >
-          <h4>HS-max</h4>
-        </div>
+      <div className="button_filter_state" onClick={handlebutton}>
+        {buttonfilter === false ? <h1>Open filter</h1> : <h1>Close filter</h1>}
       </div>
-      <hr />
-      {/* parte de los filtros */}
+      <div className={buttonfilter === true ? "filter_on" : "filter_off"}>
+        <h3>Order by</h3>
+        <hr />
 
-      {diets.map((data, index) => {
-        return (
-          <div>
-            <FilterBotton key={index} name={data} reset={resetboton} />
+        <div className="filter_botton_order">
+          <div
+            onClick={() => order("A-Z")}
+            className={estado.order === "A-Z" ? "filter_ok" : "filter_no"}
+          >
+            <h4>A-Z</h4>
           </div>
-        );
-      })}
-      <div onClick={handlereset} className="filter_botton_reset">
-        <h2>Reset</h2>
+          <div
+            onClick={() => order("Z-A")}
+            className={estado.order === "Z-A" ? "filter_ok" : "filter_no"}
+          >
+            <h4>Z-A</h4>
+          </div>
+          <div
+            onClick={() => order("HS-min")}
+            className={estado.order === "HS-min" ? "filter_ok" : "filter_no"}
+          >
+            <h4>HS-min</h4>
+          </div>
+          <div
+            onClick={() => order("HS-max")}
+            className={estado.order === "HS-max" ? "filter_ok" : "filter_no"}
+          >
+            <h4>HS-max</h4>
+          </div>
+        </div>
+        <hr />
+        {/* parte de los filtros */}
+
+        {diets.map((data, index) => {
+          return (
+            <div>
+              <FilterBotton key={index} name={data} reset={resetboton} />
+            </div>
+          );
+        })}
+        <div onClick={handlereset} className="filter_botton_reset">
+          <h2>Reset</h2>
+        </div>
       </div>
     </div>
   );
