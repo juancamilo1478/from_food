@@ -27,6 +27,12 @@ function Form() {
         ...contenido,
         image: response.data.secure_url,
       });
+      setErrors(
+        validation({
+          ...contenido,
+          image: response.data.secure_url,
+        })
+      );
     } catch (error) {
       console.error(error);
     }
@@ -75,15 +81,17 @@ function Form() {
         [e.target.name]: e.target.value,
       })
     );
-    console.log(contenido);
+    console.log(errors);
   };
   const handleform = (e) => {
     if (
+      contenido.chek === true &&
       !errors.name &&
       !errors.image &&
       !errors.level &&
       !errors.pasos &&
-      !errors.diet
+      !errors.diet &&
+      !errors.resumen
     ) {
       axios
         .post("/recipes", {
@@ -112,6 +120,7 @@ function Form() {
         });
     } else {
       setcontenido({ ...contenido, chek: true });
+      setErrors(validation({ ...contenido }));
     }
   };
 
@@ -131,6 +140,13 @@ function Form() {
         ...contenido,
         diet: [...contenido.diet, contenido.select_diet],
       });
+
+      setErrors(
+        validation({
+          ...contenido,
+          diet: [...contenido.diet, contenido.select_diet],
+        })
+      );
     }
   };
 
@@ -142,6 +158,13 @@ function Form() {
       ...contenido,
       diet: data,
     });
+
+    setErrors(
+      validation({
+        ...contenido,
+        diet: data,
+      })
+    );
   };
 
   const deletestep = (e) => {
@@ -160,6 +183,12 @@ function Form() {
       ...contenido,
       pasos: filtered,
     });
+    setErrors(
+      validation({
+        ...contenido,
+        pasos: filtered,
+      })
+    );
   };
 
   const savestep = () => {
@@ -171,6 +200,12 @@ function Form() {
         paso: "",
         pasos: [...contenido.pasos, data],
       });
+      setErrors(
+        validation({
+          ...contenido,
+          pasos: [...contenido.pasos, data],
+        })
+      );
     }
   };
 
@@ -261,8 +296,16 @@ function Form() {
         </div>
 
         {contenido.chek === true ? (
-          <div className="form_error">
-            <h2>Erros:</h2>
+          <div
+            className={
+              Object.keys(errors).length === 0 ? "form_not_error" : "form_error"
+            }
+          >
+            {Object.keys(errors).length === 0 ? (
+              <h2>not erros confirm in save</h2>
+            ) : (
+              <h2>Erros:</h2>
+            )}
             {errors.name ? <h3>* {errors.name}</h3> : ""}
             {errors.image ? <h3>* {errors.image}</h3> : ""}
             {errors.level ? <h3>* {errors.level}</h3> : ""}

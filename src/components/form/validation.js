@@ -24,10 +24,10 @@ const validation = (contenido)=>{
     {
         errors.diet="not diet"
     }
-    if(contenido.pasos.length===0){
+    if(contenido.pasos.length<1){
         errors.pasos="not step"
     }
-    if(contenido.resumen.length<10)
+    if(contenido.resumen.length<1)
     {
         errors.resumen="sumary small or null"
     }
